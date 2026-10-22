@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 data = pd.read_csv('data.csv')
 # print(data.head(10))
 
-def gradient_decent(m_now,b_now,points,L) :
+
+# Gradient descent Function 
+def gradient_descent(m_now,b_now,points,L) :
     m_gradient = 0
     b_gradient = 0
 
@@ -21,18 +23,20 @@ def gradient_decent(m_now,b_now,points,L) :
 
     return m,b
 
-m = 0
-b = 0
-L = 0.00035
-epochs = 200000
-for i in range(epochs) :
-    m,b = gradient_decent(m,b,data,L) 
-    if i % 10 == 0:
-        print(f"epoch : {i}")
-        print(f'M :{m}...B: {b}\n')
 
-print(f'Final values : M :{m}....B :{b}')
+def train(data,epochs=200000,L=0.00035) :
+    m,b = 0,0
+    for i in range(epochs) :
+            m,b = gradient_descent(m,b,data,L) 
+            if i % 10 == 0:
+                print(f"epoch : {i}")
+                print(f'M :{m}...B: {b}\n')
+    return m,b
 
-plt.scatter(data.studytime,data.score,color = "black")
-plt.plot(list(range(20,80)),[m*x+b for x in range(20,80)],color ="red")
-plt.show()
+
+if __name__ == "__main__" :
+    m,b = train(data)
+    print(f'Final values : M :{m}....B :{b}')
+    plt.scatter(data.studytime,data.score,color = "black")
+    plt.plot(list(range(20,80)),[m*x+b for x in range(20,80)],color ="red")
+    plt.show()
