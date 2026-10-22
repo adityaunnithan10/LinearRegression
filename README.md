@@ -29,8 +29,6 @@ where `L` is the learning rate.
 
 Trained on 100 data points with a learning rate of `0.00035` for 200,000 epochs:
 
-| | m | b |
-|---|---|---|
 | Gradient descent (this project) | 1.3257 | 6.0599 |
 | Exact solution (`np.polyfit`) | 1.3257 | 6.0599 |
 
